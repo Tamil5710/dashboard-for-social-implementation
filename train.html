@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Social Media Dashboard (HTML Only)</title>
+
+<style>
+:root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#4f46e5}
+body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:linear-gradient(180deg,#071025 0%, #081226 100%);color:#e6eef6}
+.app{display:flex;min-height:100vh}
+.sidebar{width:260px;background:linear-gradient(180deg,#071126,#081428);padding:20px}
+.logo{font-weight:700;font-size:18px;margin-bottom:12px}
+.nav{margin-top:20px}
+.nav button{display:block;width:100%;text-align:left;padding:10px;border-radius:8px;border:none;background:transparent;color:var(--muted);margin-bottom:6px;cursor:pointer}
+.main{flex:1;padding:24px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.search{background:var(--card);padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+.search input{background:transparent;border:none;outline:none;color:#e6eef6}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.col-span-3{grid-column:span 3}
+.col-span-9{grid-column:span 9}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+.stat-icon{width:40px;height:40px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.03);margin-right:10px}
+.posts{display:flex;flex-direction:column;gap:12px}
+.post-card{display:flex;gap:12px}
+.avatar{width:48px;height:48px;border-radius:999px;background:linear-gradient(90deg,#334155,#1e293b);display:flex;align-items:center;justify-content:center}
+.btn{background:var(--accent);border:none;color:white;padding:8px 12px;border-radius:8px;cursor:pointer}
+.muted{color:var(--muted)}
+.top-post{display:flex;align-items:center;justify-content:space-between;gap:12px}
+@media (max-width:900px){.sidebar{display:none}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">SocialBoard</div>
+    <div class="muted">Profile</div>
+    <div class="nav">
+      <button>Overview</button>
+      <button>Posts</button>
+      <button>Analytics</button>
+      <button>Settings</button>
+    </div>
+
+    <div style="margin-top:20px" class="card">
+      <strong>Integrations</strong>
+      <div class="muted" style="margin-top:8;font-size:13px">Connect Twitter, Instagram, Facebook</div>
+      <div style="margin-top:10"><button class="btn">Connect</button></div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Header -->
+    <div class="header">
+      <div style="display:flex;gap:12;align-items:center">
+        <h2 style="margin:0">Dashboard</h2>
+        <div class="search">
+          <input placeholder="Search posts, users..." />
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="muted">Notifications •</div>
+        <div class="avatar">U</div>
+      </div>
+    </div>
+
+    <!-- Grid layout -->
+    <div class="grid">
+
+      <!-- Left section -->
+      <div class="col-span-9">
+
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12;margin-bottom:12">
+
+          <div class="card" style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center">
+              <div class="stat-icon">📈</div>
+              <div>
+                <div style="font-size:14px">Followers</div>
+                <div style="font-weight:700;font-size:18px">124.6K</div>
+              </div>
+            </div>
+            <div class="muted">+2.4%</div>
+          </div>
+
+          <div class="card" style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center">
+              <div class="stat-icon">👍</div>
+              <div>
+                <div style="font-size:14px">Likes</div>
+                <div style="font-weight:700;font-size:18px">8.2K</div>
+              </div>
+            </div>
+            <div class="muted">+1.1%</div>
+          </div>
+
+          <div class="card" style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center">
+              <div class="stat-icon">🔁</div>
+              <div>
+                <div style="font-size:14px">Shares</div>
+                <div style="font-weight:700;font-size:18px">1.1K</div>
+              </div>
+            </div>
+            <div class="muted">-0.4%</div>
+          </div>
+
+          <div class="card" style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center">
+              <div class="stat-icon">💬</div>
+              <div>
+                <div style="font-size:14px">Comments</div>
+                <div style="font-weight:700;font-size:18px">4.3K</div>
+              </div>
+            </div>
+            <div class="muted">+3.2%</div>
+          </div>
+        </div>
+
+        <!-- Activity chart (Static SVG) -->
+        <div class="card" style="margin-bottom:12px">
+          <strong>Activity (weekly)</strong>
+          <div class="muted">Followers / Likes</div>
+
+          <svg viewBox="0 0 100 150" style="width:100%;height:140px;margin-top:8px">
+            <polyline fill="none" stroke="rgba(79,70,229,0.9)" stroke-width="2"
+                      points="0,110 16,90 32,100 48,84 64,70 80,76 96,64" />
+            <polyline fill="none" stroke="rgba(99,102,241,0.6)" stroke-width="2"
+                      points="0,110 16,70 32,90 48,40 64,20 80,40 96,10" />
+          </svg>
+        </div>
+
+        <!-- Feed -->
+        <div class="card">
+          <h3 style="margin-top:0">Feed</h3>
+
+          <div class="posts">
+
+            <div class="card post-card">
+              <div class="avatar">A</div>
+              <div style="flex:1">
+                <div style="display:flex;justify-content:space-between">
+                  <div><strong>Asha</strong> <span class="muted">@ashad</span></div>
+                  <div class="muted">· 2h</div>
+                </div>
+                <div style="margin-top:8px">
+                  Launched a new campaign today — thrilled with the response! 🎉
+                </div>
+                <div class="muted" style="display:flex;gap:12px;margin-top:10px">
+                  <div>👍 320</div>
+                  <div>💬 46</div>
+                  <div>🔁 19</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card post-card">
+              <div class="avatar">D</div>
+              <div style="flex:1">
+                <div style="display:flex;justify-content:space-between">
+                  <div><strong>Dev</strong> <span class="muted">@dev_k</span></div>
+                  <div class="muted">· 5h</div>
+                </div>
+                <div style="margin-top:8px">
+                  Quick tip: reuse components for faster UI development.
+                </div>
+                <div class="muted" style="display:flex;gap:12px;margin-top:10px">
+                  <div>👍 210</div>
+                  <div>💬 18</div>
+                  <div>🔁 7</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card post-card">
+              <div class="avatar">S</div>
+              <div style="flex:1">
+                <div style="display:flex;justify-content:space-between">
+                  <div><strong>Smile Co</strong> <span class="muted">@smileco</span></div>
+                  <div class="muted">· 1d</div>
+                </div>
+                <div style="margin-top:8px">
+                  Giveaway time — follow + RT to win!
+                </div>
+                <div class="muted" style="display:flex;gap:12px;margin-top:10px">
+                  <div>👍 420</div>
+                  <div>💬 112</div>
+                  <div>🔁 98</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right section -->
+      <div class="col-span-3">
+
+        <div class="card">
+          <strong>Quick Actions</strong>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button class="btn">Create Post</button>
+            <button style="padding:8px 12px;border-radius:8px;cursor:pointer">Schedule</button>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="card">
+          <div class="top-post">
+            <div>
+              <div class="muted">Top Post</div>
+              <div style="font-weight:700">Giveaway time — follow + RT to win!</div>
+              <div class="muted">420 likes · 98 shares</div>
+            </div>
+            <div class="avatar">T</div>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="card">
+          <strong>Filters</strong>
+          <div class="muted" style="margin-top:8px">Show: All · Scheduled · Published</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
